@@ -1,6 +1,6 @@
 import { createContext, useReducer } from 'react';
 import faker from 'faker';
-import { reducer } from './Reducer';
+import { prodreducer, reducer } from './Reducer';
 
 export const cartContext = createContext();
 faker.seed(99);
@@ -19,12 +19,22 @@ const Context = props => {
   //sort for item stock
   const products = product.sort((a, b) => b.inStock - a.inStock);
 
-  //useReducer
+  //cartUseReducer
   var initialState = { products, cart: [] };
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  //filterUseReducer
+  let prodInitialState = {
+    byStock: false,
+    byFastDeliver: false,
+    byRating: 0,
+    searchQuery: ''
+  };
+
+  const [prodState, prodDispatch] = useReducer(prodreducer, prodInitialState);
+
   return (
-    <cartContext.Provider value={{ state, dispatch }}>
+    <cartContext.Provider value={{ state, dispatch, prodState, prodDispatch }}>
       {props.children}
     </cartContext.Provider>
   );

@@ -15,8 +15,12 @@ import { cartContext } from '../Context/Context';
 const Header = () => {
   const {
     state: { cart },
-    dispatch
+    dispatch,
+    prodDispatch
   } = useContext(cartContext);
+
+  //Cart Total
+  const Total = cart.reduce((prev, cur) => prev + cur.price * cur.qty, 0);
 
   return (
     <div>
@@ -30,6 +34,9 @@ const Header = () => {
               style={{ width: 500 }}
               placeholder="Search a product"
               className="m-auto"
+              onChange={e =>
+                prodDispatch({ type: 'search', payload: e.target.value })
+              }
             ></FormControl>
           </Navbar.Text>
           <Nav>
@@ -61,6 +68,10 @@ const Header = () => {
                       </Button>
                     </>
                   ))}
+                  <br />
+                  <br />
+
+                  <h3> Total ${Total}</h3>
                 </Dropdown.Menu>
               ) : (
                 <Dropdown.Menu style={{ minWidth: 370 }}>

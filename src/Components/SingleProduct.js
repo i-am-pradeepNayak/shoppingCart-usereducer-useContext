@@ -8,7 +8,6 @@ const SingleProduct = ({ product }) => {
     state: { cart },
     dispatch
   } = useContext(cartContext);
-  console.log(cart);
 
   return (
     <div className="products">

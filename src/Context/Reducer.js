@@ -16,7 +16,7 @@ export const reducer = (state, action) => {
         if (item.id === action.payload.id) {
           return { ...item, qty: item.qty + 1 };
         }
-        console.log('loop');
+
         return { ...item };
       });
       return {
@@ -24,6 +24,28 @@ export const reducer = (state, action) => {
         cart: cart
       };
     }
+    default:
+      return state;
+  }
+};
+
+export const prodreducer = (state, action) => {
+  switch (action.type) {
+    case 'byStock':
+      return { ...state, byStock: !state.byStock };
+    case 'sorting':
+      return { ...state, sort: action.payload };
+    case 'search':
+      return { ...state, searchQuery: action.payload };
+    case 'fast':
+      return { ...state, byFastDeliver: !state.byFastDelive };
+    case 'clear':
+      return {
+        byStock: false,
+        byFastDelivery: false,
+        byRating: 0,
+        searchQuery: ''
+      };
     default:
       return state;
   }
