@@ -10,17 +10,17 @@ export const reducer = (state, action) => {
       console.log(cart);
       return { ...state, cart: cart };
     }
-    // case 'qty': {
-    //   console.log('Quantity added');
-    //   const cart = state.cart.map(item => {
-    //     if (item.id === action.payload.id) {
-    //       return (item.qty += 1);
-    //     }
-    //     return item;
-    //   });
-    //   console.log(cart);
-    //   return { ...state, cart: cart };
-    // }
+    case 'qty': {
+      console.log('Quantity added');
+      const cart = state.cart.map(item => {
+        if (item.id === action.payload.id) {
+          return (item.qty += 1);
+        }
+        return item;
+      });
+      console.log(cart);
+      return { ...state, cart: cart };
+    }
     default:
       return state;
   }

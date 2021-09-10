@@ -46,11 +46,11 @@ const Header = () => {
                       <p>
                         <b>{`${item.name} , $${item.price} and ${item.qty}`}</b>
                       </p>
-                      {/* <Button
+                      <Button
                         onClick={() => dispatch({ type: 'qty', payload: item })}
                       >
                         +
-                      </Button> */}
+                      </Button>
                       <Button
                         variant="danger"
                         onClick={() =>
